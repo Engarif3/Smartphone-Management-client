@@ -1,4 +1,5 @@
 import { Layout, Menu, MenuProps } from "antd";
+import { Outlet } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 // import {
 //   UploadOutlined,
@@ -70,6 +71,7 @@ const MainLayout = () => {
             }}
           >
             <h1>main content should be here</h1>
+            <Outlet></Outlet>
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
