@@ -52,10 +52,12 @@ const Products = () => {
               gap: "5px",
             }}
           >
-            <Button>Add</Button>
-            <Button>Delete</Button>
-            <Button>Update</Button>
-            <Button>Duplicate</Button>
+            <Button type="primary">Add</Button>
+            <Button type="primary" danger>
+              Delete
+            </Button>
+            <Button type="primary">Update</Button>
+            <Button type="primary">Duplicate</Button>
           </div>
         </div>
       ))}
