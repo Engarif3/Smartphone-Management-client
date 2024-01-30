@@ -32,11 +32,9 @@ const Login = () => {
         setUser({ user: { user: userFromToken }, token: res.data.token })
       );
 
-      toast.success("Logged in successful", { id: toastId, duration: 2000 });
-      if (userFromToken) {
-        const from = location.state?.from?.pathname || "/";
-        navigate(from, { replace: true });
-      }
+      toast.success("Logging successful", { id: toastId, duration: 2000 });
+      const from = location.state?.from?.pathname || "/";
+      navigate(from, { replace: true });
     } catch (error) {
       toast.error("Something went wrong", { id: toastId, duration: 2000 });
     }

@@ -2,12 +2,13 @@ import { Button, Layout, Menu, MenuProps } from "antd";
 import { Outlet } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { logout } from "../../redux/features/auth/authSlice";
+import { toast } from "sonner";
 const { Header, Content, Sider } = Layout;
 
 const items: MenuProps["items"] = [
   {
     key: "1",
-    label: "Option",
+    label: "Option1",
   },
 
   {
@@ -16,11 +17,11 @@ const items: MenuProps["items"] = [
     children: [
       {
         key: "3",
-        label: "Option",
+        label: "OptionA",
       },
       {
         key: "4",
-        label: "Option",
+        label: "OptionB",
       },
     ],
   },
@@ -30,9 +31,10 @@ const MainLayout = () => {
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(logout());
+    toast.success("Logout successful", { duration: 2000 });
   };
   return (
-    <Layout style={{ height: "100vh", backgroundColor: "white" }}>
+    <Layout style={{ height: "100vh" }}>
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
@@ -49,7 +51,7 @@ const MainLayout = () => {
             margin: "12px",
             marginLeft: "30px",
             fontSize: "20px",
-            color: "orangere",
+            color: "orange",
             fontWeight: "bold",
           }}
         >
