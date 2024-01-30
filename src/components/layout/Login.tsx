@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "antd";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { useAppDispatch } from "../../redux/hooks";
-import { setUser } from "../../redux/features/auth/authSlice";
+import { TUser, setUser } from "../../redux/features/auth/authSlice";
 import { verifyToken } from "../../utils/verifyToken";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -18,10 +17,9 @@ const Login = () => {
     },
   });
   const dispatch = useAppDispatch();
-  const [login, { error }] = useLoginMutation();
+  const [login] = useLoginMutation();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onsubmit = async (data: any) => {
+  const onsubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Logging.....");
     try {
       const userInfo = {
@@ -29,7 +27,7 @@ const Login = () => {
         password: data.password,
       };
       const res = await login(userInfo).unwrap();
-      const userFromToken = verifyToken(res.data.token);
+      const userFromToken = verifyToken(res.data.token) as TUser;
       dispatch(
         setUser({ user: { user: userFromToken }, token: res.data.token })
       );
