@@ -5,8 +5,11 @@ import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/features/auth/authSlice";
 import { verifyToken } from "../../utils/verifyToken";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { handleSubmit, register } = useForm({
     defaultValues: {
       username: "ashiq",
@@ -25,6 +28,11 @@ const Login = () => {
     const res = await login(userInfo).unwrap();
     const userFromToken = verifyToken(res.data.token);
     dispatch(setUser({ user: { user: userFromToken }, token: res.data.token }));
+
+    if (userFromToken) {
+      const from = location.state?.from?.pathname || "/";
+      navigate(from, { replace: true });
+    }
   };
   return (
     <form
