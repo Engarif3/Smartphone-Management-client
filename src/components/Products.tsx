@@ -24,6 +24,7 @@ const Products = () => {
         <div
           key={product._id}
           style={{
+            backgroundColor: "rgb(210, 210, 210)",
             border: "2px solid black",
             borderRadius: "10px",
             width: "100%",
@@ -32,17 +33,18 @@ const Products = () => {
           <div
             style={{
               padding: "15px",
+              fontSize: "20px",
             }}
           >
-            <p>Name:{product.name}</p>
-            <p>Price:{product.price}</p>
-            <p>Quantity:{product.quantity}</p>
-            <p>Brand:{product.brand}</p>
-            <p>Model:{product.model}</p>
-            <p>Operating System:{product.operatingSystem}</p>
-            <p>Storage Capacity:{product.storage}</p>
-            <p>Screen Size:{product.screenSize}</p>
-            <p>Details:{product.details}</p>
+            <p>Name: {product.name}</p>
+            <p>Price: {product.price}</p>
+            <p>Quantity: {product.quantity}</p>
+            <p>Brand: {product.brand}</p>
+            <p>Model: {product.model}</p>
+            <p>Operating System: {product.operatingSystem}</p>
+            <p>Storage Capacity: {product.storage}</p>
+            <p>Screen Size: {product.screenSize}</p>
+            <p>Details: {product.details}</p>
           </div>
           <div
             style={{
