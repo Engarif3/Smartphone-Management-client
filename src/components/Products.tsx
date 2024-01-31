@@ -2,12 +2,19 @@
 import { Button } from "antd";
 import { useGetAllProductsQuery } from "../redux/features/products/productsApi";
 import { TProduct } from "../types/types";
+import { useNavigate } from "react-router-dom";
 // import { useAppSelector } from "../redux/hooks";
 
 const Products = () => {
   // const user = useAppSelector(selectCurrentUser);
   // console.log(user);
+
+  const navigate = useNavigate();
   const { data: products } = useGetAllProductsQuery("");
+
+  const handleDetails = (id: string | undefined) => {
+    navigate(`/product/${id}`);
+  };
 
   return (
     <div
@@ -54,6 +61,9 @@ const Products = () => {
               gap: "5px",
             }}
           >
+            <Button type="primary" onClick={() => handleDetails(product._id)}>
+              details
+            </Button>
             <Button type="primary">Add</Button>
             <Button type="primary" danger>
               Delete

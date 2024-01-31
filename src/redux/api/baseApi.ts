@@ -21,32 +21,9 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
+
 // custom base query
 // for getting a new access token with refresh token if the access token expires
-// const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
-//   let result = await baseQuery(args, api, extraOptions);
-
-//   if (result?.error?.status === 401) {
-//     const requestForAccessToken = await fetch(
-//       "http://localhost:5000/api/auth/refresh-token",
-//       {
-//         method: "POST",
-//         credentials: "include",
-//       }
-//     );
-//     const data = await requestForAccessToken.json();
-//     if (data?.data?.accessToken) {
-//       const user = (api.getState() as RootState).auth.user;
-
-//       api.dispatch(setUser({ user, token: data.data.accessToken }));
-//       result = await baseQuery(args, api, extraOptions);
-//     } else {
-//       api.dispatch(logout());
-//     }
-//   }
-//   return result;
-// };
-
 const baseQueryWithRefreshToken = async (
   args: string | FetchArgs,
   api: BaseQueryApi,
