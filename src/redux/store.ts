@@ -18,6 +18,7 @@ const persistConfig = {
   storage,
 };
 
+// to store the access token in the browser local storage for persistance of access token for all routes
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
