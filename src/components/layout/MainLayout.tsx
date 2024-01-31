@@ -1,5 +1,5 @@
 import { Button, Layout, Menu, MenuProps } from "antd";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { logout } from "../../redux/features/auth/authSlice";
 import { toast } from "sonner";
@@ -29,10 +29,20 @@ const items: MenuProps["items"] = [
 
 const MainLayout = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logout());
     toast.success("Logout successful", { duration: 2000 });
   };
+
+  const onMenuClick = (e: { key: string }) => {
+    if (e.key === "1") {
+      // Assuming you want to navigate when 'Option1' is clicked
+      navigate("/products"); // Navigate to /products
+    }
+    // Add other cases if needed
+  };
+
   return (
     <Layout style={{ height: "100vh" }}>
       <Sider
@@ -62,6 +72,7 @@ const MainLayout = () => {
           mode="inline"
           defaultSelectedKeys={["4"]}
           items={items}
+          onClick={onMenuClick}
         />
       </Sider>
       <Layout>
