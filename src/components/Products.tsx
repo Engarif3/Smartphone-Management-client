@@ -6,7 +6,7 @@ import {
 } from "../redux/features/products/productsApi";
 import { TProduct } from "../types/types";
 import { useNavigate } from "react-router-dom";
-// import { useAppSelector } from "../redux/hooks";
+import Swal from "sweetalert2";
 
 const Products = () => {
   // const user = useAppSelector(selectCurrentUser);
@@ -17,13 +17,29 @@ const Products = () => {
   const [deleteProduct] = useDeleteProductMutation();
 
   const handleDelete = async (productId: string | undefined) => {
-    try {
-      await deleteProduct(productId).unwrap(); // Call the mutation with the product ID
-      // Handle successful deletion
-      console.log("Product deleted successfully");
-    } catch (error) {
-      // Handle any errors
-      console.error("Error deleting product:", error);
+    // Show confirmation dialog
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You will not be able to recover this product!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      // User confirmed the deletion
+      try {
+        await deleteProduct(productId).unwrap();
+        Swal.fire("Deleted!", "The product has been deleted.", "success");
+      } catch (error) {
+        Swal.fire(
+          "Error!",
+          "There was an issue deleting the product.",
+          "error"
+        );
+      }
     }
   };
 
