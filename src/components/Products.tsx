@@ -1,6 +1,9 @@
 // import { selectCurrentUser } from "../redux/features/auth/authSlice";
 import { Button } from "antd";
-import { useGetAllProductsQuery } from "../redux/features/products/productsApi";
+import {
+  useDeleteProductMutation,
+  useGetAllProductsQuery,
+} from "../redux/features/products/productsApi";
 import { TProduct } from "../types/types";
 import { useNavigate } from "react-router-dom";
 // import { useAppSelector } from "../redux/hooks";
@@ -8,9 +11,21 @@ import { useNavigate } from "react-router-dom";
 const Products = () => {
   // const user = useAppSelector(selectCurrentUser);
   // console.log(user);
-
   const navigate = useNavigate();
   const { data: products } = useGetAllProductsQuery("");
+
+  const [deleteProduct] = useDeleteProductMutation();
+
+  const handleDelete = async (productId: string | undefined) => {
+    try {
+      await deleteProduct(productId).unwrap(); // Call the mutation with the product ID
+      // Handle successful deletion
+      console.log("Product deleted successfully");
+    } catch (error) {
+      // Handle any errors
+      console.error("Error deleting product:", error);
+    }
+  };
 
   const handleDetails = (id: string | undefined) => {
     navigate(`/product/${id}`);
@@ -70,7 +85,11 @@ const Products = () => {
             <Button type="primary" onClick={handleAddProduct}>
               Add
             </Button>
-            <Button type="primary" danger>
+            <Button
+              type="primary"
+              danger
+              onClick={() => handleDelete(product?._id)}
+            >
               Delete
             </Button>
             <Button type="primary">Update</Button>

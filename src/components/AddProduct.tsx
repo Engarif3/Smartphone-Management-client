@@ -14,13 +14,13 @@ const AddProduct = () => {
     try {
       const productInfo = {
         name: data.name,
-        price: Number(data.price),
+        price: parseFloat(data.price),
         quantity: Number(data.quantity),
         brand: data.brand,
         model: data.model,
         operatingSystem: data.operatingSystem,
         storage: Number(data.storage),
-        screenSize: Number(data.screenSize),
+        screenSize: parseFloat(data.screenSize),
         details: data.details,
       };
 
@@ -52,11 +52,11 @@ const AddProduct = () => {
       </div>
       <div>
         <label htmlFor="price">price:</label>
-        <input type="number" id="price" {...register("price")} />
+        <input type="text" id="price" {...register("price")} />
       </div>
       <div>
         <label htmlFor="quantity">Quantity:</label>
-        <input type="number" id="quantity" {...register("quantity")} />
+        <input type="text" id="quantity" {...register("quantity")} />
       </div>
       <div>
         <label htmlFor="brand">Brand:</label>
@@ -76,11 +76,11 @@ const AddProduct = () => {
       </div>
       <div>
         <label htmlFor="storage">Storage:</label>
-        <input type="number" id="storage" {...register("storage")} />
+        <input type="text" id="storage" {...register("storage")} />
       </div>
       <div>
         <label htmlFor="screenSize">Screen Size:</label>
-        <input type="number" id="screenSize" {...register("screenSize")} />
+        <input type="text" id="screenSize" {...register("screenSize")} />
       </div>
       <div>
         <label htmlFor="details">Details:</label>
