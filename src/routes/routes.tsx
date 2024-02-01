@@ -4,6 +4,7 @@ import Login from "../components/layout/Login";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 import Products from "../components/Products";
 import SingleProduct from "../components/SingleProduct";
+import AddProduct from "../components/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <SingleProduct />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/add-product",
+    element: (
+      <ProtectedRoute>
+        <AddProduct />
       </ProtectedRoute>
     ),
   },

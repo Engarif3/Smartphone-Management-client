@@ -15,6 +15,9 @@ const Products = () => {
   const handleDetails = (id: string | undefined) => {
     navigate(`/product/${id}`);
   };
+  const handleAddProduct = () => {
+    navigate(`/add-product`);
+  };
 
   return (
     <div
@@ -64,7 +67,9 @@ const Products = () => {
             <Button type="primary" onClick={() => handleDetails(product._id)}>
               details
             </Button>
-            <Button type="primary">Add</Button>
+            <Button type="primary" onClick={handleAddProduct}>
+              Add
+            </Button>
             <Button type="primary" danger>
               Delete
             </Button>
