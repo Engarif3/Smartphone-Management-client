@@ -7,6 +7,7 @@ const productsApi = baseApi.injectEndpoints({
         url: "/products",
         method: "GET",
       }),
+      providesTags: ["deleteAProduct"],
     }),
 
     getSingleProduct: builder.query({
@@ -32,6 +33,7 @@ const productsApi = baseApi.injectEndpoints({
           method: "DELETE",
         };
       },
+      invalidatesTags: ["deleteAProduct"],
     }),
   }),
 });
