@@ -23,6 +23,7 @@ const productsApi = baseApi.injectEndpoints({
         method: "POST",
         body: productInfo,
       }),
+      invalidatesTags: ["deleteAProduct"],
     }),
 
     // we can also use return like this removing the first bracket and compare this with getSingleProduct: builder.query
