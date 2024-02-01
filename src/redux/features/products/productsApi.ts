@@ -7,7 +7,7 @@ const productsApi = baseApi.injectEndpoints({
         url: "/products",
         method: "GET",
       }),
-      providesTags: ["deleteAProduct"],
+      providesTags: ["refetchProducts"],
     }),
 
     getSingleProduct: builder.query({
@@ -23,9 +23,18 @@ const productsApi = baseApi.injectEndpoints({
         method: "POST",
         body: productInfo,
       }),
-      invalidatesTags: ["deleteAProduct"],
+      invalidatesTags: ["refetchProducts"],
     }),
 
+    updateProduct: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/product/${id}`,
+          method: "PUT",
+        };
+      },
+      invalidatesTags: ["refetchProducts"],
+    }),
     // we can also use return like this removing the first bracket and compare this with getSingleProduct: builder.query
     deleteProduct: builder.mutation({
       query: (id) => {
@@ -34,7 +43,7 @@ const productsApi = baseApi.injectEndpoints({
           method: "DELETE",
         };
       },
-      invalidatesTags: ["deleteAProduct"],
+      invalidatesTags: ["refetchProducts"],
     }),
   }),
 });
@@ -44,4 +53,5 @@ export const {
   useGetSingleProductQuery,
   useAddProductMutation,
   useDeleteProductMutation,
+  useUpdateProductMutation,
 } = productsApi;

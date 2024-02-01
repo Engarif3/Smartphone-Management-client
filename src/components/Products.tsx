@@ -9,8 +9,6 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Products = () => {
-  // const user = useAppSelector(selectCurrentUser);
-  // console.log(user);
   const navigate = useNavigate();
   const { data: products } = useGetAllProductsQuery("");
 
@@ -48,6 +46,9 @@ const Products = () => {
   };
   const handleAddProduct = () => {
     navigate(`/add-product`);
+  };
+  const handleUpdateProduct = (id: string | undefined) => {
+    navigate(`/updateProduct/${id}`);
   };
 
   return (
@@ -108,7 +109,12 @@ const Products = () => {
             >
               Delete
             </Button>
-            <Button type="primary">Update</Button>
+            <Button
+              type="primary"
+              onClick={() => handleUpdateProduct(product._id)}
+            >
+              Update
+            </Button>
             <Button type="primary">Duplicate</Button>
           </div>
         </div>

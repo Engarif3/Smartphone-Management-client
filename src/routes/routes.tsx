@@ -5,6 +5,7 @@ import ProtectedRoute from "../components/layout/ProtectedRoute";
 import Products from "../components/Products";
 import SingleProduct from "../components/SingleProduct";
 import AddProduct from "../components/AddProduct";
+import UpdateAProduct from "../components/UpdateAProduct";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <AddProduct />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/updateProduct/:id",
+    element: (
+      <ProtectedRoute>
+        <UpdateAProduct />
       </ProtectedRoute>
     ),
   },

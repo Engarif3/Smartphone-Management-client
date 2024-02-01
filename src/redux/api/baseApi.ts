@@ -82,6 +82,6 @@ export const baseApi = createApi({
   // baseQuery: baseQuery,
   // if using custom base query
   baseQuery: baseQueryWithRefreshToken,
-  tagTypes: ["deleteAProduct"],
+  tagTypes: ["refetchProducts"],
   endpoints: () => ({}),
 });
