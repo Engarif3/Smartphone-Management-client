@@ -27,10 +27,11 @@ const productsApi = baseApi.injectEndpoints({
     }),
 
     updateProduct: builder.mutation({
-      query: (id) => {
+      query: (productInfo) => {
         return {
-          url: `/product/${id}`,
+          url: `/product/${productInfo.id}`,
           method: "PUT",
+          body: productInfo.data,
         };
       },
       invalidatesTags: ["refetchProducts"],

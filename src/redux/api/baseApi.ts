@@ -29,10 +29,7 @@ const baseQueryWithRefreshToken = async (
   api: BaseQueryApi,
   extraOptions: object
 ) => {
-  console.log("Base query with refresh token called");
-
   let result = await baseQuery(args, api, extraOptions);
-  console.log("Base query result:", result);
 
   if (result?.error?.status === 401) {
     console.log("Received 401 error, attempting to refresh token");
@@ -69,8 +66,6 @@ const baseQueryWithRefreshToken = async (
       console.error("Error refreshing token:", error);
       api.dispatch(logout());
     }
-  } else {
-    console.log("No 401 error, returning base query result");
   }
 
   return result;
